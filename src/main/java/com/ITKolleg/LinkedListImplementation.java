@@ -1,7 +1,10 @@
 
 package com.ITKolleg;
 
-public class Generics {
+/**
+ *
+ */
+public class LinkedListImplementation {
 
     public static void main(String[] args) {
 
@@ -70,6 +73,10 @@ class MyLinkedListV1<M> {
 
     public ElementContainer<M> head;
 
+    /**
+     * adds an element to a Container
+     * @param string
+     */
     public void add(M string) {
         ElementContainer<M> newElement = new ElementContainer<>(string);
         if (head == null) {
@@ -81,6 +88,12 @@ class MyLinkedListV1<M> {
 
     }
 
+    /**
+     * adds a provided element to a Container at the specified index
+     *
+     * @param index
+     * @param string
+     */
     public void add(int index, M string) {
 
         ElementContainer<M> newElement = new ElementContainer<>(string);
@@ -104,7 +117,7 @@ class MyLinkedListV1<M> {
             }
         }
 
-        //case the List is not empty
+        //case the container is not empty
         while (currentElement != null) {
 
             if (counter == index) {
@@ -112,23 +125,23 @@ class MyLinkedListV1<M> {
                 if (previousElement == null) {
                     head = newElement;
                     newElement.nextElement = currentElement;
-                    System.out.println("New element added to list at index " + index);
+                    System.out.println("New element added to container at index " + index);
                 }
                 // index is greater than 0 )
                 else if (previousElement != null) {
-                    previousElement.nextElement = newElement; //adds the element to the list at index position
+                    previousElement.nextElement = newElement; //adds the element to the container at index position
                     newElement.nextElement = currentElement;  //redirects the reference from the current element at index to the new element at index
-                    System.out.println("New element added to list at index " + index);
+                    System.out.println("New element added to container at index " + index);
                 }
                 //prevents an infinite while loop
                 break;
 
             }
-            if (counter == (index - 1) && currentElement.nextElement == null) { //this means that the element should be added at the end of the list
-                // set the current element's next to the new element (effectively adding the new element to hte end of the list)
+            if (counter == (index - 1) && currentElement.nextElement == null) { //this means that the element should be added at the end of the container
+                // set the current element's next to the new element (effectively adding the new element to hte end of the container)
                 if (previousElement != null) {
                     currentElement.nextElement = newElement;
-                    System.out.println("New element added to list at index " + index);
+                    System.out.println("New element added to container at index " + index);
                 }
                 //prevents an infinite while loop
                 break;
@@ -142,11 +155,15 @@ class MyLinkedListV1<M> {
         }
     }
 
+    /**
+     * removes an element from a container at the index provided
+     * @param index
+     */
     public void remove (int index) {
 
         ElementContainer<M> currentElement = head;
         ElementContainer<M> previousElement = null;
-        int counter = 0; //to keep track of the elements in List
+        int counter = 0; //to keep track of the elements in container
 
         //case the index is 0, element is head, reset next element to head
         if((currentElement != null) && (index == 0)){
@@ -179,6 +196,11 @@ class MyLinkedListV1<M> {
         }
     }
 
+    /**
+     * returns the last element of a list in a container
+     * @return
+     */
+
     private ElementContainer<M> lastElement() {
         ElementContainer<M> lastElement = head;
 
@@ -191,9 +213,14 @@ class MyLinkedListV1<M> {
         return lastElement;
     }
 
+    /**
+     * converts a list to a string for printing
+     *
+     * @return
+     */
     @Override
     public String toString(){
-        String returnString = "\nCurrent Linked List Elements: \n";
+        String returnString = "\nCurrent Container Elements: \n";
 
         ElementContainer<M> currentElement = head;
 
@@ -209,6 +236,10 @@ class MyLinkedListV1<M> {
 
 }
 
+/**
+ *
+ * @param <D>
+ */
 class ElementContainer<D> {
 
     public D data;
